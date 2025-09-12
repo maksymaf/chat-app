@@ -1,11 +1,28 @@
+require('dotenv').config();
+
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        expires: 1000 * 60 * 60 * 24
+    },
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+        collectionName: 'sessions'
+    })
+}));
 
 const io = new Server(server, {
     cors: {
@@ -26,6 +43,13 @@ io.on('connect', (socket) => {
     });
 });
 
-server.listen(PORT, () => {
-    console.log('Server has successfuly started working.');
-})
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+        console.log('Successfuly connected to database.');
+        server.listen(PORT, () => {
+            console.log('Server has successfuly started working.');
+        })
+    })
+    .catch(() => {
+        console.log('Connection failed.');
+    });
