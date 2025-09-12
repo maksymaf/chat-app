@@ -10,7 +10,18 @@
     <title>Chat App</title>
 </head>
 <body>
+    <div class="chat-container">
+        <header>
+            <h1>💬 chatapp</h1>
+        </header>
 
+        <ul id="messages"></ul>
+        <form id="form" autocomplete="off">
+            <input id="message" type="text" placeholder="Введи повідомлення..." />
+            <button id="submit">➤</button>
+        </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/main.js"></script>
 </body>
 </html>
