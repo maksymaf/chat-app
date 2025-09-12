@@ -1,0 +1,25 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maksymaf/chat-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maksymaf/chat-app/issues"
+  },
+  "homepage": "https://github.com/maksymaf/chat-app#readme",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
+}
