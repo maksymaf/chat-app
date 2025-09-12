@@ -6,6 +6,8 @@ const { Server } = require('socket.io');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const userRouter = require('./routes/user.route');
+
 const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
@@ -23,6 +25,8 @@ app.use(session({
         collectionName: 'sessions'
     })
 }));
+app.use(express.urlencoded({extended: false}));
+app.use('/api', userRouter);
 
 const io = new Server(server, {
     cors: {
