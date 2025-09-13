@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/maksymaf/chat-app#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "connect-mongo": "^5.1.0",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",

@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const userRouter = require('./routes/user.route');
+const pageRouter = require('./routes/page.route');
 
 const app = express();
 const server = http.createServer(app);
@@ -27,6 +28,7 @@ app.use(session({
 }));
 app.use(express.urlencoded({extended: false}));
 app.use('/api', userRouter);
+app.use('/', pageRouter);
 
 const io = new Server(server, {
     cors: {
