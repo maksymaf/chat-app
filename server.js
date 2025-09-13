@@ -13,7 +13,6 @@ const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static('public'));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
@@ -29,6 +28,7 @@ app.use(session({
 app.use(express.urlencoded({extended: false}));
 app.use('/api', userRouter);
 app.use('/', pageRouter);
+app.use(express.static('public'));
 
 const io = new Server(server, {
     cors: {
