@@ -24,8 +24,3 @@ socket.on('clientMessage', (messageData, socketID) => {
         ul.scrollTop = ul.scrollHeight;
     }
 }); 
-
-
-// zVSF9R0yRLSAEbEI
-
-// mongodb+srv://admin:zVSF9R0yRLSAEbEI@cluster0.8jrzcff.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

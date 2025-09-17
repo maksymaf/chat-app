@@ -1,8 +1,9 @@
 const isAuth = (req, res, next) => {
+    console.log(req.session);
     if (req.session.isAuth){
         next();
     }else{
-        return res.redirect(301, '/login');
+        return res.redirect('/login');
     }
 }
 

@@ -27,18 +27,21 @@ const loginUser = async (req, res) => {
         return res.redirect(301, '/register');
     }
 
-    console.log(password === candidate.password);
-
     const isPasswordCorrect = bcrypt.compareSync(password, candidate.password);
-    console.log(isPasswordCorrect)
-    if (!isPasswordCorrect){
-        
-        return res.redirect(301, '/login');
+    if (!isPasswordCorrect){        
+        return res.redirect('/login');
     }
 
     req.session.isAuth = true;
+    req.session.save((err) => {
+        if (err){
+            console.log('Session saving failed', err.message);
+            return res.redirect('/login');
+        }
 
-    res.redirect('/');
+        console.log('Session has been successfuly saved');
+        return res.redirect('/');
+    })
 }
 
 module.exports = {
